@@ -1,8 +1,8 @@
-<?php session_start(); ?>
-<?php isset($_SESSION['username']) ? $username = $_SESSION['username'] : $username = null ?>
+<?php require 'template/session.php' ?>
 <?php isset($_SESSION['error']) ? $error = $_SESSION['error'] : $error = null ?>
-<?php if (empty($username)) { ?>
-  <?php include 'template/navbar.php' ?>
+<?php if (empty($user)) { ?>
+  <?php include 'template/header.php' ?>
+<?php include 'template/navbar.php' ?>
   <div class="container-fluid">
     <form method="post" action="process/login.php">
       <div class="mb-3">

@@ -1,5 +1,7 @@
-<?php session_start(); ?>
+<?php require 'template/session.php' ?>
 <?php isset($_SESSION['error']) ? $error = $_SESSION['error'] : $error = null; ?>
+<?php if (empty($user)) { ?>
+<?php include 'template/header.php' ?>
 <?php include 'template/navbar.php' ?>
 <div class="container-fluid">
     <form method="post" action="process/register.php">
@@ -29,3 +31,7 @@
     </form>
 </div>
 <?php include 'template/footer.php' ?>
+<?php } else {
+  header("Location:index.php");
+}
+?>
