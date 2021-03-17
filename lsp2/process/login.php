@@ -6,10 +6,10 @@ $password = $_POST['password'];
 $refresh = header("Location:../login.php");
 
 if (empty($username)) {
-    $_SESSION['error_login'] = 'Username anda kosong';
+    setcookie('error_login', 'Username anda kosong', time()+ 2 ,"/");
     echo $refresh;
 } elseif (empty($password)) {
-    $_SESSION['error_login'] = 'Password anda kosong';
+    setcookie('error_login', 'Password anda kosong', time()+ 2 ,"/");
     echo $refresh;
 } else {
     $stmt = $conn->prepare('SELECT * FROM user WHERE username=:username');
@@ -17,12 +17,12 @@ if (empty($username)) {
     $stmt->execute();
     if ($stmt->rowCount()) {
         $row = $stmt->fetch(PDO::FETCH_OBJ);
-        if(password_verify($password, $row->password)) {
-            $_SESSION['error_login'] = '';
+        if (password_verify($password, $row->password)) {
+            setcookie('error_login', '', time()+ 2 ,"/");
             $_SESSION['username'] = $row->username;
             header("Location:../index.php");
         } else {
-            $_SESSION['error_login'] = 'Username dan password tidak sesuai';
+            setcookie('error_login', 'Username dan Password tidak sesuai', time()+ 2 ,"/");
             echo $refresh;
         }
     } else {

@@ -1,5 +1,6 @@
-<?php session_start() ?>
-<?php isset($_SESSION['error_login'])? $error = $_SESSION['error_login'] : $error = null; ?>
+<?php include 'template/session.php' ?>
+<?php if(empty($user)){ ?>
+<?php isset($_COOKIE['error_login'])? $error = $_COOKIE['error_login'] : $error = null; ?>
 <?php include 'template/header.php' ?>
 <form action="process/login.php" method="post">
   <div class="mb-3">
@@ -16,3 +17,6 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php include 'template/footer.php' ?>
+<?php }else{
+  header('Location:index.php');
+} ?>
