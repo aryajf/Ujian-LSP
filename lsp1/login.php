@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php isset($_SESSION['error_login']) ? $error = $_SESSION['error_login'] : $error = null; ?>
+<?php isset($_COOKIE['error_login']) ? $error = $_COOKIE['error_login'] : $error = null; ?>
 <?php require 'template/header.php'; ?>
 <form action="process/login.php" method="post">
 <div class="mb-3 row">

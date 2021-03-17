@@ -1,9 +1,10 @@
 <?php require 'template/session.php' ?>
-<?php if($user->role == 1){ ?>
-<?php isset($_COOKIE['error_user_mapel'])? $error_user_mapel = $_COOKIE['error_user_mapel']: $error_user_mapel = null ?>
-<?php isset($_COOKIE['error_mapel'])? $error_mapel = $_COOKIE['error_mapel']: $error_mapel = null ?>
-<?php include 'template/header.php' ?>
-<?php include 'template/navbar.php' ?>
+<?php if($user->role == 1){
+    isset($_COOKIE['error_user_mapel'])? $error_user_mapel = $_COOKIE['error_user_mapel']: $error_user_mapel = null;
+    isset($_COOKIE['error_mapel'])? $error_mapel = $_COOKIE['error_mapel']: $error_mapel = null;
+    include 'template/header.php';
+    include 'template/navbar.php';
+?>
 <div class="container-fluid">
 <h1>WASSUP ADMIN</h1>
 
@@ -30,7 +31,7 @@ while($siswa = $stmt->fetch(PDO::FETCH_OBJ)) {
 <td><?php echo $siswa->email ?></td>
 <td><?php echo date('d/m/Y H:i:s', strtotime($siswa->created_at)) ?></td>
 </tr>
-<?php $no++;} $no = 1; ?>
+<?php $no++; } $no = 1; ?>
 </tbody>
 </table>
 <hr>
