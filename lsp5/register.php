@@ -1,8 +1,8 @@
 <?php session_start() ?>
 <?php include 'template/header.php' ?>
 <?php
-    if(isset($_SESSION['error_register'])){
-        $error = $_SESSION['error_register'];
+    if(isset($_COOKIE['error_register'])){
+        $error = $_COOKIE['error_register'];
     }else{
         $error = null;
     }
