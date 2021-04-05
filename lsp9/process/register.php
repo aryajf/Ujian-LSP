@@ -1,6 +1,5 @@
 <?php
     require '../koneksi.php';
-    session_start();
 
     $username = $_POST['username'];
     $nama = $_POST['nama'];
@@ -8,33 +7,28 @@
     $refresh = header("Location:../register.php");
 
     if(empty($username)){
-        $_SESSION['error_register'] = 'Username anda kosong';
+        setcookie('error_register', 'Username anda kosong', time() + 2, "/");
         echo $refresh;
     }elseif(empty($nama)){
-        $_SESSION['error_register'] = 'Nama anda kosong';
+        setcookie('error_register', 'Nama anda kosong', time() + 2, "/");
         echo $refresh;
     }elseif(empty($password)){
-        $_SESSION['error_register'] = 'Password anda kosong';
+        setcookie('error_register', 'Password anda kosong', time() + 2, "/");
         echo $refresh;
     }else{
         $stmt = $conn->prepare("SELECT * FROM user WHERE username=$username");
         $stmt->execute();
         if($stmt->rowCount()){
-            $_SESSION['error_register'] = 'Akun anda sudah terdaftar di aplikasi kami';
+            setcookie('error_register', 'Akun anda sudah terdaftar di aplikasi kami', time() + 2, "/");
             echo $refresh;
         }else{
-            $_SESSION['error_register'] = '';
+            setcookie('error_register', '', time() + 2, "/");
+            $hashedpass = password_hash($password, PASSWORD_DEFAULT);
             $signup = $conn->prepare("INSERT INTO user(username, password, nama , role) VALUES(:username, :password, :nama, 2)");
             $signup->bindValue(':username', $username);
-            $signup->bindValue(':password', $password);
+            $signup->bindValue(':password', $hashedpass);
             $signup->bindValue(':nama', $nama);
             $signup->execute();
-
-            // $register = $conn->prepare("INSERT INTO user VALUES(:username,:password,:nama,2)");
-            // $register->bindValue(':username', $username);
-            // $register->bindValue(':password', $password);
-            // $register->bindValue(':nama', $nama);
-            // $register->execute();
             header('Location:../login.php');
         }
     }

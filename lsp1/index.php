@@ -22,7 +22,8 @@
             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
             <?php if($user){ ?>
                 <a class="nav-link" href="dashboard.php"><?php echo $user->nama ?></a>
-                <a class="nav-link" href="process/signout.php">Signout</a>
+                <a class="nav-link" href="process/signout.php">Signout</a> 
+                
             <?php }else{ ?>
                 <a class="nav-link" href="login.php">Login</a>
                 <a class="nav-link" href="register.php">Register</a>

@@ -1,5 +1,6 @@
+<?php isset($_COOKIE['error_register']) ? $error = $_COOKIE['error_register'] : $error = null; ?>
 <?php require 'template/header.php' ?>
-<form action="process/signin.php" method="post">
+<form action="process/register.php" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>
     <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -13,10 +14,9 @@
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input name="password" type="password" class="form-control" id="exampleInputPassword1">
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
+  <?php if ($error) { ?>
+    <div class="alert alert-danger"><?php echo $error; ?></div>
+  <?php } ?>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php require 'template/footer.php' ?>
