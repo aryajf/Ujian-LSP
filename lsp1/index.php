@@ -1,15 +1,4 @@
-<?php
-    session_start();
-    if(isset($_SESSION['username'])){
-        require 'koneksi.php';
-        $stmt = $conn->prepare('SELECT * FROM user WHERE username=:username');
-        $stmt->bindValue(':username', $_SESSION['username']);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
-    }else{
-        $user = null;
-    }
-?>
+<?php require 'template/session.php'; ?>
 <?php require 'template/header.php'; ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">

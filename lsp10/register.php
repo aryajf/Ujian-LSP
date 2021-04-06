@@ -1,6 +1,7 @@
-<?php session_start(); ?>
+<?php require 'template/session.php' ?>
+<?php if (empty($user)) { ?>
 <?php include 'template/header.php' ?>
-<?php isset($_SESSION['error_register']) ? $error = $_SESSION['error_register'] : $error = null ?>
+<?php isset($_COOKIE['error_register']) ? $error = $_COOKIE['error_register'] : $error = null ?>
 <form action="process/register.php" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>
@@ -20,3 +21,7 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php include 'template/footer.php' ?>
+<?php } else {
+  header("Location:index.php");
+}
+?>

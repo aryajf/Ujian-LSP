@@ -1,5 +1,7 @@
-<?php session_start() ?>
+<?php include 'template/session.php' ?>
+<?php if (empty($user)) { ?>
 <?php include 'template/header.php' ?>
+<?php include 'template/navbar.php'?>
 <?php
     if(isset($_COOKIE['error_login'])){
         $error = $_COOKIE['error_login'];
@@ -22,3 +24,7 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php include 'template/footer.php' ?>
+<?php } else {
+  header("Location:index.php");
+}
+?>
