@@ -1,16 +1,14 @@
 <?php include 'template/session.php'?>
 <?php include 'template/header.php'?>
 <?php include 'template/navbar.php'?>
-<div class="container-fluid">
-    <div class="row">
-    <div class="col d-flex align-items-center justify-content-center">
-        <h1 id="home-title">Kuyy borong semua!</h1>
-    </div>
-    <div class="col d-flex align-items-center justify-content-center" id="home-img"><img src="assets/shopping.png" alt="">
-    </div>
-    </div>
-</div>
 <div class="container mt-5">
+    <div class="row">
+        <div class="col d-flex align-items-center justify-content-center">
+            <h1 id="home-title">Kuyy borong semua!</h1>
+        </div>
+        <div class="col d-flex align-items-center justify-content-center" id="home-img"><img src="assets/shopping.png" alt="">
+        </div>
+    </div>
     <div class="row">
         <?php
             $no = 1;
