@@ -1,42 +1,41 @@
-<?php include 'template/session.php' ?>
-<?php include 'template/header.php' ?>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                <?php if (empty($user)) { ?>
-                    <a class="nav-link" href="login.php">Login</a>
-                    <a class="nav-link" href="register.php">Register</a>
-                <?php } else { ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $user->nama ?>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="
-                            <?php
-                                if($user->role == 1){
-                                    echo 'admin.php';
-                                }else{
-                                    echo 'dashboard.php';
-                                }
-                            ?>
-                            ">Dashboard</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="process/signout.php">Signout</a></li>
-                        </ul>
-                    </li>
-                <?php } ?>
+<?php include 'template/session.php'?>
+<?php include 'template/header.php'?>
+<?php include 'template/navbar.php'?>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col d-flex align-items-center justify-content-center">
+        <h1 id="home-title">Kuyy borong semua!</h1>
+    </div>
+    <div class="col d-flex align-items-center justify-content-center" id="home-img"><img src="assets/shopping.png" alt="">
+    </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <?php
+            $no = 1;
+            $stmt = $conn->prepare("SELECT barang.id, barang.nama, barang.deskripsi, user.username, barang.created_at FROM barang JOIN user ON barang.user_id=user.id");
+            $stmt->execute();
+            while($barang = $stmt->fetch(PDO::FETCH_OBJ)) {
+        ?>
+        <div class="col-md-3">
+            <div data-aos="flip-left" data-aos-duration="500" data-aos-offset="250" class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $barang->nama ?></h5>
+                    <p class="card-text"><?php echo $barang->deskripsi ?></p>
+                    <hr>
+                    <div>
+                        <i class="uil uil-pen"></i> <?php echo $barang->username ?> 
+                    </div>
+                    <div>
+                        <i class="uil uil-clock"></i> <?php echo date("d-m-Y h:m:s", strtotime($barang->created_at)) ?>
+                    </div>
+                    <hr>
+                    <a href="show.php?id=<?php echo $barang->id ?>" class="btn btn-success">Baca Selengkapnya</a>
+                </div>
             </div>
         </div>
+        <?php } ?>
     </div>
-</nav>
-<h1>LSP</h1>
-<?php include 'template/footer.php' ?>
+</div>
+<?php include 'template/footer.php'?>

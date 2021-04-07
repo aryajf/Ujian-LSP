@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 16 Mar 2021 pada 02.14
+-- Waktu pembuatan: 07 Apr 2021 pada 04.23
 -- Versi server: 5.7.24
 -- Versi PHP: 7.4.16
 
@@ -18,8 +18,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ujian_lsp9`
+-- Database: `ujian_lsp0`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `barang`
+--
+
+CREATE TABLE `barang` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `deskripsi` varchar(100) NOT NULL,
+  `cover` varchar(100) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -38,7 +54,7 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `nama_role`) VALUES
 (1, 'Admin'),
-(2, 'Siswa');
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -49,23 +65,23 @@ INSERT INTO `role` (`id`, `nama_role`) VALUES
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
   `nama` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `status` enum('Active','Banned') NOT NULL,
   `role` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id`, `username`, `password`, `nama`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'tes', 'tes', 'tes', 2, '2021-03-16 02:05:47', '2021-03-16 02:05:47');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `role`
@@ -84,6 +100,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `role`
 --
 ALTER TABLE `role`
@@ -93,7 +115,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
