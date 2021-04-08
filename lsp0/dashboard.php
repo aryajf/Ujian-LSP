@@ -1,4 +1,6 @@
 <?php include 'template/session.php'?>
+<?php if (empty($user) || $user->role == 1){header("Location:index.php");} else {
+?>
 <?php include 'template/header.php'?>
 <?php include 'template/navbar.php'?>
 <?php
@@ -61,3 +63,4 @@
 </div>
 </div>
 <?php include 'template/footer.php'?>
+<?php } ?>
