@@ -1,6 +1,7 @@
 <?php require 'template/session.php' ?>
 <?php if (empty($user)) { ?>
 <?php include 'template/header.php' ?>
+<?php include 'template/navbar.php' ?>
 <?php isset($_COOKIE['error_register']) ? $error = $_COOKIE['error_register'] : $error = null ?>
 <form action="process/register.php" method="post">
   <div class="mb-3">
