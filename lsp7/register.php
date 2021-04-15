@@ -1,4 +1,8 @@
-<?php session_start() ?>
+<?php include 'template/session.php' ?>
+<?php if($user) {
+  header('Location:index.php');
+}else{
+?>
 <?php
     if(isset($_SESSION['error_register'])){
         $error = $_SESSION['error_register'];
@@ -7,6 +11,7 @@
     }
 ?>
 <?php include 'template/header.php' ?>
+<?php include 'template/navbar.php' ?>
 <form action="process/register.php" method="POST">
 <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -27,3 +32,4 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <?php include 'template/footer.php' ?>
+<?php } ?>

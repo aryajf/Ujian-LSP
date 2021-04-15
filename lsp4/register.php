@@ -1,7 +1,7 @@
 <?php session_start(); ?>
-<?php isset($_SESSION['error_register'])?$error = $_SESSION['error_register']: $error = null ?>
+<?php isset($_COOKIE['error_register'])?$error = $_COOKIE['error_register']: $error = null ?>
 <?php include 'template/header.php' ?>
-<form action="process/signin.php" method="post">
+<form action="process/register.php" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>
     <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

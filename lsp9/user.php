@@ -13,6 +13,19 @@
 <div class="row">
     <div class="col">
         <h3>Tambah Barang</h3>
+        <form action="process/barang/insert.php" method="post">
+        <div>
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" name="nama">
+        </div>
+        <div>
+          <label for="deskripsi"></label>
+          <textarea type="text" id="deskripsi" name="deskripsi"></textarea>
+        </div>
+        <div>
+          <input type="submit" value="Buat">
+        </div>
+        </form>
     </div>
     <div class="col">
         <h3>List Barang</h3>
