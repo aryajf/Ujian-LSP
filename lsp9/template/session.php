@@ -1,7 +1,7 @@
 <?php
     session_start();
+    require 'koneksi.php';
     if(isset($_SESSION['username'])){
-        require 'koneksi.php';
         $stmt = $conn->prepare('SELECT * FROM user WHERE username=:username');
         $stmt->bindValue(':username', $_SESSION['username']);
         $stmt->execute();

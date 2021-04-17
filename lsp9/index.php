@@ -4,11 +4,28 @@
 <div class="container">
 <div class="row my-5">
 <div class="col d-flex justify-content-center align-items-center">
-    <h1>Kuyy borong semuaa!</h1>
+    <h1 id="home-title">Kuyy borong semuaa!</h1>
 </div>
 <div class="col d-flex justify-content-center align-items-center">
-    <img src="assets/shop.png" alt="">
+    <img id="home-image" src="assets/shop.png" alt="">
 </div>
+</div>
+<hr>
+<div class="row">
+    <?php
+        $stmt = $conn->prepare("SELECT * FROM barang");
+        $stmt->execute();
+        while($barang = $stmt->fetch(PDO::FETCH_OBJ)){
+    ?>
+    <div class="col mb-2">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $barang->nama_barang ?></h5>
+                <p class="card-text"><?php echo $barang->deskripsi ?></p>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 </div>
 </div>
 <?php include 'template/footer.php' ?>
