@@ -1,6 +1,7 @@
-<?php session_start(); ?>
+<?php include 'template/session.php' ?>
 <?php isset($_COOKIE['error_register'])?$error = $_COOKIE['error_register']: $error = null ?>
 <?php include 'template/header.php' ?>
+<?php include 'template/navbar.php' ?>
 <form action="process/register.php" method="post">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Username</label>

@@ -3,13 +3,13 @@ session_start();
 require '../koneksi.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
-$refresh = header("Location:../signin.php");
+$refresh = header("Location:../login.php");
 
 if (empty($username)) {
-    setcookie('error_register', 'Username anda kosong', time()+ 2 ,"/");
+    setcookie('error_login', 'Username anda kosong', time()+ 2 ,"/");
     echo $refresh;
 }elseif (empty($password)) {
-    setcookie('error_register', 'Password anda kosong', time()+ 2 ,"/");
+    setcookie('error_login', 'Password anda kosong', time()+ 2 ,"/");
     echo $refresh;
 }else{
     $stmt = $conn->prepare('SELECT * FROM user WHERE username=:username');

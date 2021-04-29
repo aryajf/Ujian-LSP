@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 07 Apr 2021 pada 04.23
+-- Waktu pembuatan: 29 Apr 2021 pada 08.39
 -- Versi server: 5.7.24
 -- Versi PHP: 7.4.16
 
@@ -36,6 +36,13 @@ CREATE TABLE `barang` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `barang`
+--
+
+INSERT INTO `barang` (`id`, `nama`, `deskripsi`, `cover`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'Susu', 'sususususus', NULL, 2, '2021-04-07 05:25:45', '2021-04-07 05:25:45');
 
 -- --------------------------------------------------------
 
@@ -74,6 +81,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `nama`, `password`, `status`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin', '$2y$10$yUTcSU6qQlss1He8KDKnSuioW9IhR5nZ7OvY.Wk2SYvlTIfSSRi22', 'Active', 1, '2021-04-07 05:22:30', '2021-04-07 05:22:30'),
+(2, 'arya', 'arya', '$2y$10$86SZu8vjAxFjiplgvkpkn.LgnBfxpqKd3Zqb5JKPXzjGwCvw9PZfm', 'Active', 2, '2021-04-07 05:49:42', '2021-04-07 05:49:42');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -103,7 +118,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `role`
@@ -115,7 +130,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
